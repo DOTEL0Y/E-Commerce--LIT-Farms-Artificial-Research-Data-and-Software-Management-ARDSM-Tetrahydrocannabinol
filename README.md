@@ -1,4 +1,5 @@
-<img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/7e4e95d2-e67b-4df4-9917-4f5766942a04" />
+<img width="300" height="300" alt="image" src="https://github.com/user-attachments/assets/348aaae0-8d6d-4b2d-ab04-d0324ba69e29" />
+
 
 # E-Commerce--LIT-Farms-Artificial-Research-Data-and-Software-Management-ARDSM-Tetrahydrocannabinol
 

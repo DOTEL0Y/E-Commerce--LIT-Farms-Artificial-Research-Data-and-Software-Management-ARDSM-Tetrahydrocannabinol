@@ -1,3 +1,9 @@
+<img width="800" height="800" alt="image" src="https://github.com/user-attachments/assets/7e4e95d2-e67b-4df4-9917-4f5766942a04" />
+
+# E-Commerce--LIT-Farms-Artificial-Research-Data-and-Software-Management-ARDSM-Tetrahydrocannabinol
+
+
+
 ## Installation 
 
 As an important note. I utilized python 3.1 intrepreter to avoid conflicts with dependies 
@@ -260,6 +266,7 @@ if __name__ == '__main__':
     plot_data()
 
 ```
+<img width="898" height="677" alt="image" src="https://github.com/user-attachments/assets/85a0abba-1e89-461f-9278-bd07e1838d0f" />
 
 
 #### Tables → Columns for Products  

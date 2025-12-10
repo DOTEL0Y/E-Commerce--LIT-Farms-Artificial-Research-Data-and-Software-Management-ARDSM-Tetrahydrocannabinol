@@ -372,7 +372,7 @@ execute_values(cur,chemical_query,chemical_data.values.tolist())
 
 The goal of this is now to take the query the customerID and with that data construct artificial orders from 2024, Dec -> 2025, Dec
 
-
+### Generate orders script!~
 Below is the code that allowed to construction. 
 Note that I imported pandas to achieve this 
 ```

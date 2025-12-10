@@ -471,4 +471,29 @@ if __name__ == '__main__':
 
 ```
 
+Now to add this data to the generate_database.py script. 
+
+```
+    # Create Orders table
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS orders(
+        orderid SERIAL PRIMARY KEY,
+        customerid int,
+        date date
+        )
+    """)
+
+    orders_query = ('INSERT INTO orders (orderid,customerid,date) VALUES %s')
+    execute_values(cur,orders_query,generate_customer_orders())
+```
+
+
+Now to query this in pgadmin4 to see if it was constructed correctly
+
+```
+SELECT * FROM orders;
+```
+Yes, just the way we want it!
+
+<img width="389" height="222" alt="image" src="https://github.com/user-attachments/assets/2e6ddc0c-66ce-47bd-a6d5-15773f665993" />
 

@@ -269,7 +269,12 @@ if __name__ == '__main__':
     plot_data()
 
 ```
+
+### Figure 1:Plot Chart [X: Total CBD, Y:THCa%, Z: Total CBG]
+
+
 <img width="898" height="677" alt="image" src="https://github.com/user-attachments/assets/85a0abba-1e89-461f-9278-bd07e1838d0f" />
+This chart was created by matplotlibs. Showing the ranges of chemical data present.  I will use this chart for reference when introducing new product to virtual market to simulate consumerism response to new product. The ideal here is to understand how this chart and the plots influence buying trends. A model that can predict based on trends and consumer trajectory. 
 
 
 #### Tables → Columns for Products  
@@ -372,9 +377,10 @@ execute_values(cur,chemical_query,chemical_data.values.tolist())
 
 The goal of this is now to take the query the customerID and with that data construct artificial orders from 2024, Dec -> 2025, Dec
 
-### Generate orders script!~
-Below is the code that allowed to construction. 
-Note that I imported pandas to achieve this 
+### Chapter 3.1: Generate orders script!~
+Below is the code. 
+Note that I imported pandas to achieve this as well.
+
 ```
 import pandas as pd
 import psycopg2
@@ -496,4 +502,80 @@ SELECT * FROM orders;
 Yes, just the way we want it!
 
 <img width="389" height="222" alt="image" src="https://github.com/user-attachments/assets/2e6ddc0c-66ce-47bd-a6d5-15773f665993" />
+
+
+### Chapter 3.2: Generate OrderHistory!~
+
+
+To achieve this, I will also use similar techniques and methods shown previously.
+Mathematically, this a very important part of the scripting and generation of artificial data because the columns/rows generated here will dictate how our Machine learning model responses to the consumer purchases in relation to the chemical data. In a real scenario Data engineering and filtering among ideal HISTORICAL data is crucial due to 1. Gathering of data that is most relevant to the current scenario or problem 2. If big data is available to avoid over training the model.
+In those circumstances, cross-validation would need to be experimented on through responsive neural networks of historical data and present/incoming data to predict trends.
+Here is the script I made to generate described data
+
+```
+import pandas as pd
+import psycopg2
+import pandas
+
+import random
+from password import password
+
+
+def create_order_history():
+    conn = psycopg2.connect(
+        host='localhost',
+        database='postgres',
+        user='postgres',
+        password=password,
+        port='5432'
+    )
+
+    cur = conn.cursor()
+
+    gather_orders_query = 'SELECT * FROM orders'
+
+    cur.execute(gather_orders_query)
+
+    orders_data = cur.fetchall()
+
+    gather_product_query = 'SELECT * FROM Products'
+
+    cur.execute(gather_product_query)
+
+    product_data = cur.fetchall()
+
+
+
+    order_history = []
+    for index,order in enumerate(orders_data):
+        product_purchased = []
+        price = 0.00
+        # 10 randomly purchased products that will be used in forloop
+        random_amount_purchase = random.randint(1,10)
+        order_index = index
+        order_id = order[0]
+        # print(order_id,order)
+        for purchase_index in range(random_amount_purchase):
+            random_product = random.choice(product_data)
+            product_purchased.append([random_product[0]])
+            price += random_product[3]
+        order_history.append([order_id,product_purchased,f"${round(price, 2)}"])
+    # pd.DataFrame(order_history).to_csv('output_example.csv')
+    return(pd.DataFrame(order_history))
+
+
+if __name__ == '__main__':
+    data = create_order_history()
+
+    data = pd.DataFrame(data, columns=['orderid','customereid','date'])
+
+    # print(data)
+
+
+```
+
+### Now to import this into the database for later use! (back to create_database.py)
+
+
+
 

@@ -1,6 +1,7 @@
 SELECT 
 	thc_data.product_name,
 	thc_data.productid,
+	thc_data.quality,
 	SUM(order_history.quantity) AS total_quantity_ordered,
 	SUM(order_history.total_price) as total_revenue,
 	thc_data.thca_percentage,

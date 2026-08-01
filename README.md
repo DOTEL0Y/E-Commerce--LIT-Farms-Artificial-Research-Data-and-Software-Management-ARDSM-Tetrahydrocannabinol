@@ -9,7 +9,7 @@
 
 ## Installation 
 
-As an important note. I utilized python 3.1 intrepreter to avoid conflicts with dependies 
+As an important note. I utilized python 3.1 interpreter to avoid conflicts with dependencies  
 ```
 pip install openpyxl
 pip install pandas
